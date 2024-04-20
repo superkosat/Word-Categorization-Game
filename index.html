@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Category Matching Word Game</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <h1>Word Categorization Game</h1>
+        <div class="subtitle">
+            <h3>Create four groups of four!</h3>
+        </div>
+        <div class="modal" id="modal">
+            <div class="modal-content" id="modal-content">
+            </div>
+        </div>
+        <div class="square-container"></div>
+        <div class ="submit-container">
+            <button class="btn-pill" onclick="openModal(1)">Test</button>
+            <button class="btn-pill btn-lg" onclick="deselectAll()">Deselect All</button>
+            <button class="btn-pill" onclick="makeGuess()">Submit</button>
+            <div class="guess-container">
+                <p>Mistakes remaining:</p>
+                <div class="circle" id="circle1"></div>
+                <div class="circle" id="circle2"></div>
+                <div class="circle" id="circle3"></div>
+                <div class="circle" id="circle4"></div>
+            </div>
+        </div>
+        <script src="script.js"></script>
+    </body>
+</html>

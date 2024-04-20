@@ -1,0 +1,200 @@
+body {
+    font-family:'Franklin Gothic', Tahoma, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+h1 {
+    text-align: center;
+    position: absolute;
+    top: 0;
+}
+
+.square-container {
+    display: grid;
+    grid-template-columns: repeat(4, 8rem);
+    grid-template-rows: repeat(4, 7rem);
+    gap: 0.5rem;
+}
+
+.submit-container {
+    /*position: relative;*/
+    display: flex;
+    margin-top: 30px;
+}
+
+.btn-pill {
+    width: 100px;
+    height: 40px;
+    font-size: 16px;
+    font-weight: 700;
+    border: none;
+    border-radius: 20px;
+    background-color: black;
+    transition: background-color 0.15s ease;
+    color: white;
+    margin-right: 10px;
+}
+
+.btn-pill:hover {
+    background-color: rgb(37, 37, 37);
+}
+
+.btn-lg {
+    width: 150px;
+}
+
+.guess-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*margin-top: 20px;*/
+}
+
+.circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: black;
+    margin: 0 5px;
+    transition: opacity 0.5s ease;
+}
+
+.guess-container .circle.hidden {
+    opacity: 0;
+}
+
+.square {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(230, 228, 228);
+    text-transform: uppercase;
+    font-size: 120%;
+    border: none;
+    border-radius: 12px;
+    font-weight: bold;
+    cursor: auto;
+    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.square.active {
+    background-color: rgb(88, 85, 85);
+    color: white;
+    cursor: pointer;
+}
+
+.overlay {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 12px;
+    width: calc(4 * 8rem + 3 * 0.5rem);
+    height: 7rem;
+    background-color: rgb(49, 49, 44);
+    z-index: 10;
+    transition: background-color 0.3s ease;
+}
+
+#easy-overlay {
+    background-color: rgb(233, 230, 82);
+}
+
+#medium-overlay {
+    background-color: rgb(132, 199, 59);
+}
+
+#harder-overlay {
+    background-color: rgb(94, 169, 255);
+}
+
+#difficult-overlay {
+    background-color: rgb(183, 109, 252);
+}
+
+
+
+.square.shrink {
+    /*background-color:red;*/
+    transform: scale(0.95);
+}
+
+.square.shake {
+    animation: horizontal-shaking 0.3s cubic-bezier(.36, .07, .19, .97) both;
+    transform: translate3d(0, 0, 0);
+    /*background-color: blue;*/
+}
+
+.square.hop {
+    animation: hop 0.3s;
+    /*background-color: red;*/
+}
+
+.animate-swap {
+    transition: transform 0.2s ease;
+    filter: blur(10px);
+}
+
+@keyframes hop {
+    0% { transform: translateY(0) }
+    25% { transform: translateY(-2px) }
+    50% { transform: translateY(-10px) }
+    75% { transform: translateY(-2px) }
+    100% { transform: translateY(0) }
+}
+
+
+@keyframes horizontal-shaking {
+    0% { transform: translateX(0) }
+    25% { transform: translateX(5px) }
+    50% { transform: translateX(-5px) }
+    75% { transform: translateX(5px) }
+    100% { transform: translateX(0) }
+}
+
+
+
+
+.modal {
+    position: fixed;
+    z-index: 11;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 2rem 5rem 2rem 5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.modal-button {
+    padding: 10px 20px;
+    position: relative;
+    z-index: 12;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.modal-button:hover {
+    background-color: #0056b3;
+}
