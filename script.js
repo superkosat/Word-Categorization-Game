@@ -1,8 +1,8 @@
 let categories = {
-    "easy": ["citrus fruits", ["lemon", "orange", "grapefruit", "lime"]],
-    "medium": ["U.S.-based technology companies", ["apple", "amazon", "meta", "cisco"]],
-    "harder": ["anagrams", ["parse", "spear", "pears", "spare"]],
-    "difficult": ["____ soup", ["alphabet", "onion", "beef", "pea"]]
+    "easy": ["ready", ["prepare", "load", "set", "prime"]],
+    "medium": ["types of numbers", ["imaginary", "natural", "whole", "complex"]],
+    "harder": ["things you can catch", ["cold", "fish", "drift", "bus"]],
+    "difficult": ["linux distributions", ["fedora", "arch", "void", "puppy"]],
 };
 
 
