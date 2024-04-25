@@ -56,7 +56,8 @@ for (let i = 1; i <= 16; i++) {
         }
     }
     square.setAttribute('group', randomWord[0]);
-    square.setAttribute('position', i); // may be redundant, check default index
+    square.setAttribute('position', i);
+    square.classList.add('unsolved');
     square.textContent = randomWord[1];
     indexToRemove = wordList.indexOf(randomWord);
     wordList.splice(indexToRemove, 1);
@@ -134,7 +135,7 @@ function makeGuess() {
                 updateGuesses();
                 if (guesses == 0) {
                     console.log('guesses used up');
-                    //solvePuzzle();
+                    solvePuzzle();
                 }
             }
 
@@ -159,7 +160,7 @@ function updateGuesses() {
 
 
 // Move solved squares to next available row
-function moveSolvedToNextRow(activeButtons, difficulty, user) {
+async function moveSolvedToNextRow(activeButtons, difficulty, user) {
     ordering = categories[difficulty][1]; //ordering of category
     startRowIndex = (nextRow - 1) * 4 + 1;
 
@@ -174,21 +175,23 @@ function moveSolvedToNextRow(activeButtons, difficulty, user) {
         swapButtons(activeButtons[i], buttonsInRow[i]);
         buttonsInRow[i].classList.add(`solved-${difficulty}`);
         buttonsInRow[i].disabled = true;
+        buttonsInRow[i].classList.remove('unsolved');
     }
 
     levelSolved(difficulty);
 
     nextRow++;
     if (nextRow == 5 && user) {
+        await delay(1000);
         openModal(1);
-    } else if (!user) {
+    } else if (nextRow == 5) {
+        await delay(1000);
         openModal(0);
     }
     deselectAll();
 }
 
 
-// TODO implement swapAttribute function
 function swapButtons(button1, button2) {
     // Get button positions
     const rect1 = button1.getBoundingClientRect();
@@ -279,21 +282,53 @@ async function hopActiveButtons() {
     await delay(totalDelay);
 }
 
-// Returns promise for duration of totalDelay
+// Returns promise for timeout of specified duration
 function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+// Solves the remainder of puzzle once guesses made exceeds 4
+async function solvePuzzle() {
+    while (nextRow < 5) {
+        await delay(1700);
+        difficultyToSolve = ''
+        const buttonsList = document.querySelectorAll('.square.unsolved');
+        const buttons = Array.from(buttonsList);
+        const difficultyOrder = Object.keys(categories);
+        console.log(difficultyOrder);
 
-function solvePuzzle() {
-    //use nextRow to find next row to solve and continue to solve until row 4
-
-
-
-    openModal(0); //here because of async
+        for (let difficulty of difficultyOrder) {
+            const found = buttons.find(button => button.getAttribute('group') === difficulty);
+            if (found) {
+                difficultyToSolve = difficulty;
+                break;
+            }
+        }
+        
+        //buttons in the easiest yet unsolved group
+        const solvedCategory = buttons.filter(button => button.getAttribute('group') === difficultyToSolve);
+        moveSolvedToNextRow(solvedCategory, difficultyToSolve, false);
+    }
 }
 
-// Opens notification modal
+// Shuffle squares into random order
+/*function shuffle() {
+    const buttons = document.querySelectorAll('.square.unsolved');
+    let m = buttons.length, t, i;
+
+    // While there remain elements to shuffle…
+    while (m) {
+        // Pick a remaining element…
+        i = Math.floor(Math.random() * m--);
+
+        // And swap it with the current element.
+        t = buttons[m];
+        swapButtons(buttons[m], buttons[i]);
+        buttons[i] = t;
+    }
+}*/
+
+// Open notification modal
 function openModal(result) {
     const modal = document.getElementById('modal');
     const modalContent = document.getElementById('modal-content');
@@ -306,10 +341,10 @@ function openModal(result) {
             title = "Excellent!";
             break;
         case 5:
-            title = "Great!";
+            title = "Good!";
             break;
         case 6:
-            title = "Good!";
+            title = "Not bad!";
             break;
         case 7:
             title = "Whew!"

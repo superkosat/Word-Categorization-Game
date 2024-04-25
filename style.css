@@ -47,6 +47,7 @@ h1 {
 }
 
 .btn-pill {
+    font-family: 'Franklin Gothic', Tahoma, Verdana, sans-serif;
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
     width: 100px;
@@ -93,6 +94,7 @@ h1 {
 }
 
 .square {
+    font-family: 'Franklin Gothic', Tahoma, Verdana, sans-serif;
     -webkit-appearance: none;
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
@@ -127,6 +129,7 @@ h1 {
 }
 
 .overlay {
+    font-family: 'Franklin Gothic', Tahoma, Verdana, sans-serif;
     display: none;
     position: relative;
     top: 50%;
@@ -143,7 +146,7 @@ h1 {
     .overlay {
         width: calc(4 * 5.5rem + 3 * 0.4rem);
         height: 5.5rem;
-        font-size: 80%;
+        font-size: 90%;
     }
 }
 
