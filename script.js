@@ -1,5 +1,5 @@
 let categories = {
-    "easy": ["ready", ["prepare", "load", "set", "prime"]],
+    "easy": ["prepare", ["ready", "load", "set", "prime"]],
     "medium": ["types of numbers", ["imaginary", "natural", "whole", "complex"]],
     "harder": ["things you can catch", ["cold", "fish", "drift", "bus"]],
     "difficult": ["linux distributions", ["fedora", "arch", "void", "puppy"]],
@@ -36,13 +36,24 @@ for (let i = 1; i <= 16; i++) {
     const randomWord = randomSelection(wordList);
     const square = document.createElement('button');
     square.className = 'square';
-    
-    if (randomWord[1].length >= 12) {
-        square.style.fontSize = '90%';
-    } else if (randomWord[1].length >= 10) {
-        square.style.fontSize = '100%';
-    } else if (randomWord[1].length > 8) {
-        square.style.fontSize = '110%';
+    if (window.innerWidth > 550 ) {
+        if (randomWord[1].length >= 12) {
+            square.style.fontSize = '90%';
+        } else if (randomWord[1].length >= 10) {
+            square.style.fontSize = '95%';
+        } else if (randomWord[1].length >= 7) {
+            square.style.fontSize = '100%';
+        } else {
+            square.style.fontSize = '110%';
+        }
+    } else {
+        if (randomWord[1].length >= 10) {
+            square.style.fontSize = '75%';
+        } else if (randomWord[1].length >= 7) {
+            square.style.fontSize = '80%';
+        } else {
+            square.style.fontSize = '100%';
+        }
     }
     square.setAttribute('group', randomWord[0]);
     square.setAttribute('position', i); // may be redundant, check default index
@@ -129,7 +140,7 @@ function makeGuess() {
 
             guessInProgress = false;
 
-        })();
+        }) ();
         
     }
 }
