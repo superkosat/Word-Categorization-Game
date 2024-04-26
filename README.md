@@ -1,6 +1,6 @@
-# Word Categorization Game #
+# Word Game Web Application #
 
-
+![game](https://github.com/superkosat/Word-Categorization-Game/assets/36095695/94756953-c68d-4d86-9f3d-40407087b9f7)
 
 ### Overview ###
 
